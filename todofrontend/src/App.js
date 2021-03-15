@@ -34,9 +34,9 @@ class App extends Component {
     let csrftoken = this.getCookie("csrftoken");
     e.preventDefault();
 
-    let url = "http://localhost:8000/api/todo-create/";
+    let url = "https://todoapp-live.herokuapp.com/api/todo-create/";
     if (this.state.editing === true) {
-      url = `http://localhost:8000/api/todo-update/${this.state.todo.id}/`;
+      url = `https://todoapp-live.herokuapp.com/api/todo-update/${this.state.todo.id}/`;
       this.setState({
         editing: false,
       });
@@ -81,7 +81,7 @@ class App extends Component {
   }
 
   fetchtodo() {
-    fetch("http://localhost:8000/api/todo-list/")
+    fetch("https://todoapp-live.herokuapp.com/api/todo-list/")
       .then((response) => response.json())
       .then((data) => {
         this.setState({
@@ -92,7 +92,7 @@ class App extends Component {
   completehandler = (todo) => {
     todo.uncompleted = !todo.uncompleted;
     let csrftoken = this.getCookie("csrftoken");
-    fetch(`http://localhost:8000/api/todo-update/${todo.id}/`, {
+    fetch(`https://todoapp-live.herokuapp.com/api/todo-update/${todo.id}/`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -112,7 +112,7 @@ class App extends Component {
   }
   deletehandler(todo) {
     var csrftoken = this.getCookie("csrftoken");
-    fetch(`http://localhost:8000/api/todo-delete/${todo.id}/`, {
+    fetch(`https://todoapp-live.herokuapp.com/api/todo-delete/${todo.id}/`, {
       method: "DELETE",
       headers: { "Content-type": "application/json", "X-CSRFToken": csrftoken },
       body: JSON.stringify(this.state.todo),
